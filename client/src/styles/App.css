@@ -1,0 +1,45 @@
+html {
+  margin: 0;
+  height: 100vh;
+}
+
+body,
+#root {
+  height: 100%;
+}
+
+.img-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+}
+
+div.characters {
+  display: flex;
+  justify-content: center;
+}
+
+.character-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 2em;
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+img.character {
+  max-width: 100px;
+  height: 125px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 3em;
+  margin-top: 50px;
+}
+
+img.waldo {
+  width: 100%;
+}
