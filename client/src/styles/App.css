@@ -34,12 +34,28 @@ img.character {
   height: 125px;
 }
 
-h1 {
+.title {
   text-align: center;
   font-size: 3em;
   margin-top: 50px;
 }
 
+.main-image-group {
+  display: flex;
+  justify-content: center;
+}
+
+.dropdown {
+  position: absolute;
+  background-color: black;
+  color: white;
+  z-index: 1;
+  transform: translateY(550%) translateX(20%);
+}
+
 img.waldo {
+  position: relative;
   width: 100%;
+  height: auto;
+  justify-self: center;
 }
