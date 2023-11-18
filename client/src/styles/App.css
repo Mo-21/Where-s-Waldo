@@ -50,6 +50,7 @@ img.character {
   background-color: black;
   color: white;
   z-index: 1;
+  list-style: none;
   transform: translateY(550%) translateX(20%);
 }
 

@@ -14,7 +14,6 @@ function Image() {
   const [clickCoordinates, setClickCoordinates] = useState({ x: 0, y: 0 });
 
   const handleImageClick = (e: React.MouseEvent) => {
-    showDropdown === true ? setShowDropdown(false) : setShowDropdown(true);
     const rect = e.currentTarget.getBoundingClientRect();
     const x = ((e.clientX - rect.x) / rect.width) * 100;
     const y = ((e.clientY - rect.y) / rect.width) * 100;
@@ -22,10 +21,13 @@ function Image() {
     const left = e.clientX - rect.left;
     const top = e.clientY - rect.top;
 
-    console.log(`X:${x.toFixed(2)}%,Y: ${y.toFixed(2)}%`);
-    console.log(`rect.x: ${e.clientX}`);
+    showDropdown === true ? setShowDropdown(false) : setShowDropdown(true);
     setClickCoordinates({ x, y });
     setDropdownPosition({ top: top, left: left });
+  };
+
+  const handleCharacterClick = (e: MouseEvent) => {
+    console.log(e.currentTarget.textContent);
   };
 
   return (
@@ -61,9 +63,9 @@ function Image() {
               }}
               className="dropdown"
             >
-              <li>Waldo?</li>
-              <li>Odlaw?</li>
-              <li>Wizard?</li>
+              <li onClick={handleCharacterClick}>Waldo</li>
+              <li onClick={handleCharacterClick}>Odlaw</li>
+              <li onClick={handleCharacterClick}>Wizard</li>
             </ul>
           )}
         </div>
