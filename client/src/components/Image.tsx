@@ -4,6 +4,7 @@ import odlaw from "../assets/images/odlaw.png";
 import wizard from "../assets/images/wizard.png";
 import "../styles/App.css";
 import React, { MouseEvent, useState } from "react";
+import { usePosition } from "./CoordinatesContext";
 
 function Image() {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -11,7 +12,8 @@ function Image() {
     top: number;
     left: number;
   }>({ top: 0, left: 0 });
-  const [clickCoordinates, setClickCoordinates] = useState({ x: 0, y: 0 });
+
+  const { click } = usePosition();
 
   const handleImageClick = (e: React.MouseEvent) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -22,7 +24,7 @@ function Image() {
     const top = e.clientY - rect.top;
 
     showDropdown === true ? setShowDropdown(false) : setShowDropdown(true);
-    setClickCoordinates({ x, y });
+    click({ x, y });
     setDropdownPosition({ top: top, left: left });
   };
 
