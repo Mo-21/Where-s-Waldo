@@ -12,6 +12,7 @@ body,
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  align-items: center;
   height: 100%;
 }
 
@@ -37,12 +38,21 @@ img.character {
 .title {
   text-align: center;
   font-size: 3em;
-  margin-top: 50px;
+  margin-top: 10px;
 }
 
 .main-image-group {
   display: flex;
   justify-content: center;
+  width: 80%;
+}
+
+img.waldo {
+  position: relative;
+  width: 100%;
+  height: auto;
+  justify-self: center;
+  margin-bottom: 50px;
 }
 
 .dropdown {
@@ -51,12 +61,22 @@ img.character {
   color: white;
   z-index: 1;
   list-style: none;
+  padding-left: 0;
+  width: 100px;
+  text-align: center;
   transform: translateY(550%) translateX(20%);
 }
 
-img.waldo {
-  position: relative;
+.result {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  z-index: 1;
+  background-color: #fb383c;
+  height: 50%;
   width: 100%;
-  height: auto;
-  justify-self: center;
+  font-size: 5em;
+  top: 50%;
+  left: 0%;
 }
