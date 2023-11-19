@@ -3,8 +3,7 @@ import waldo from "../assets/images/waldo.jpeg";
 import odlaw from "../assets/images/odlaw.png";
 import wizard from "../assets/images/wizard.png";
 import "../styles/App.css";
-import React, { MouseEvent, useState } from "react";
-import { usePosition } from "./CoordinatesContext";
+import React, { useState } from "react";
 
 function Image() {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -13,7 +12,11 @@ function Image() {
     left: number;
   }>({ top: 0, left: 0 });
 
-  const { click } = usePosition();
+  const [clickCoordinates, setClickCoordinates] = useState<{
+    x: number;
+    y: number;
+  }>({ x: 0, y: 0 });
+  const [characterName, setCharacterName] = useState("");
 
   const handleImageClick = (e: React.MouseEvent) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -24,12 +27,39 @@ function Image() {
     const top = e.clientY - rect.top;
 
     showDropdown === true ? setShowDropdown(false) : setShowDropdown(true);
-    click({ x, y });
+    setClickCoordinates({ x, y });
     setDropdownPosition({ top: top, left: left });
   };
 
-  const handleCharacterClick = (e: MouseEvent) => {
-    console.log(e.currentTarget.textContent);
+  const handleCharacterClick = async (e: React.MouseEvent) => {
+    const clickedCharacterName = e.currentTarget.textContent || "";
+    setShowDropdown(false);
+    setCharacterName(clickedCharacterName); // Set the clicked character's name in the context
+    const data = {
+      name: characterName,
+      x: clickCoordinates.x,
+      y: clickCoordinates.y,
+    };
+    try {
+      const response = await fetch("/position", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      const actual = await response.json();
+      console.log(actual);
+      if (response.status === 401) {
+        throw new Error("Unauthorized");
+      } else if (response.status === 500) {
+        throw new Error("Invalid Content");
+      } else if (!response.ok) {
+        throw new Error("Something went wrong. Please try again");
+      }
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
