@@ -11,14 +11,16 @@ function Image() {
     top: number;
     left: number;
   }>({ top: 0, left: 0 });
-
   const [clickCoordinates, setClickCoordinates] = useState<{
     x: number;
     y: number;
   }>({ x: 0, y: 0 });
   const [characterName, setCharacterName] = useState("");
+  const [response, setResponse] = useState<boolean>();
 
   const handleImageClick = (e: React.MouseEvent) => {
+    if (characterName !== "") setResponse(false);
+
     const rect = e.currentTarget.getBoundingClientRect();
     const x = ((e.clientX - rect.x) / rect.width) * 100;
     const y = ((e.clientY - rect.y) / rect.width) * 100;
@@ -49,7 +51,12 @@ function Image() {
         body: JSON.stringify(data),
       });
       const actual = await response.json();
-      console.log(actual);
+      setResponse(actual);
+      if (actual === true) {
+        setTimeout(() => {
+          setResponse(false);
+        }, 3000);
+      }
       if (response.status === 401) {
         throw new Error("Unauthorized");
       } else if (response.status === 500) {
@@ -101,6 +108,7 @@ function Image() {
             </ul>
           )}
         </div>
+        {response && <h1 className="result">Correct! It is {characterName}</h1>}
       </div>
     </>
   );
