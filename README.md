@@ -2,6 +2,8 @@
 
 This project is a full-stack application that implements a game similar to Where's Waldo, allowing users to find characters (such as Waldo, Odlaw, and Wizard) in an image. The app consists of a front-end developed in React with Typescript and a back-end API built with Node.js, Express, and MongoDB.
 
+## [Live Preview](https://where-s-waldo-production.up.railway.app/)
+
 ![home-page](./screenshots/image.png)
 
 ## Features
