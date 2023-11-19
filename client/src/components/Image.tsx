@@ -4,6 +4,7 @@ import odlaw from "../assets/images/odlaw.png";
 import wizard from "../assets/images/wizard.png";
 import "../styles/App.css";
 import React, { useState } from "react";
+import { act } from "react-dom/test-utils";
 
 function Image() {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -38,7 +39,7 @@ function Image() {
     setShowDropdown(false);
     setCharacterName(clickedCharacterName); // Set the clicked character's name in the context
     const data = {
-      name: characterName,
+      name: clickedCharacterName,
       x: clickCoordinates.x,
       y: clickCoordinates.y,
     };
@@ -51,12 +52,15 @@ function Image() {
         body: JSON.stringify(data),
       });
       const actual = await response.json();
+      console.log(actual);
       setResponse(actual);
-      if (actual === true) {
-        setTimeout(() => {
-          setResponse(false);
-        }, 3000);
-      }
+      console.log(data);
+
+      // if (actual === true) {
+      //   setTimeout(() => {
+      //     setResponse(false);
+      //   }, 3000);
+      // }
       if (response.status === 401) {
         throw new Error("Unauthorized");
       } else if (response.status === 500) {
