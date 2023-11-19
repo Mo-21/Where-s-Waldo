@@ -47,12 +47,16 @@ img.character {
   width: 80%;
 }
 
+@media (max-width: 700px) {
+  .main-image-group {
+    width: 100%;
+  }
+}
+
 img.waldo {
   position: relative;
   width: 100%;
   height: auto;
-  justify-self: center;
-  margin-bottom: 50px;
 }
 
 .dropdown {
@@ -64,7 +68,7 @@ img.waldo {
   padding-left: 0;
   width: 100px;
   text-align: center;
-  transform: translateY(550%) translateX(20%);
+  transform: translateY(480%) translateX(130%);
 }
 
 .result {
@@ -74,9 +78,9 @@ img.waldo {
   position: absolute;
   z-index: 1;
   background-color: #fb383c;
-  height: 50%;
+  height: 20%;
   width: 100%;
   font-size: 5em;
-  top: 50%;
+  top: 20%;
   left: 0%;
 }
