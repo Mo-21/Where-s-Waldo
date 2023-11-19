@@ -3,13 +3,20 @@ const mongoose = require("mongoose");
 const Coordinates = mongoose.Schema;
 
 const userSchema = new Coordinates({
-  x: {
-    type: "Number",
-    required: true,
+  name: {
+    type: "String",
   },
-  y: {
+  minX: {
     type: "Number",
-    required: true,
+  },
+  maxX: {
+    type: "Number",
+  },
+  minY: {
+    type: "Number",
+  },
+  maxY: {
+    type: "Number",
   },
 });
 
