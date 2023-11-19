@@ -4,7 +4,6 @@ import odlaw from "../assets/images/odlaw.png";
 import wizard from "../assets/images/wizard.png";
 import "../styles/App.css";
 import React, { useState } from "react";
-import { act } from "react-dom/test-utils";
 
 function Image() {
   const [showDropdown, setShowDropdown] = useState(false);
